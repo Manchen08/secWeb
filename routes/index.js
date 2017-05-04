@@ -11,7 +11,7 @@ var tempDataSchema = new Schema({
   location: String
 }, {collection: 'temp-data'}); // overwrite the default of pluralizing UserData
 
-var TempData = mongoose.model('UserData', userDataSchema);
+var TempData = mongoose.model('TempData', tempDataSchema);
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -19,12 +19,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/saveTemp', function(req,res,next){
-  var user = {
-    name: req.body.name,
-    email: req.body.email
+  var temp = {
+    temp: req.body.temp,
+    date: new Date(),
+    location: req.body.location
+
   };
 
-  var data = new UserData(user);
+  var data = new TempData(temp);
   data.save();
   res.redirect('/');
 });

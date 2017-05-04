@@ -3,4 +3,11 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  p Hello!
+  form(method='POST' action='/saveTemp')
+    div.form-group
+      label(for='temp') Temp:
+      input#name.form-control(type='text', placeholder="30" name='temp')
+    div.form-group
+      label(for='location') Location:
+      input#email.form-control(type='text', placeholder='living room' name='location')
+    button.btn.btn-primary(type='submit') Submit
